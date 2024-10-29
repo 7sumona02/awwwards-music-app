@@ -1,5 +1,5 @@
 import { motion, useTransform, useScroll } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -81,9 +81,15 @@ const Card = ({ card }: { card: CardType }) => {
     //   </div>
     // </div>
     <motion.div key={card.id} className=" h-[350px] w-[350px] ml-16 flex flex-col gap-6 -mt-24">
-        <div className="img">
-            <img src={card.url} className="w-full" />
-        </div>
+        <div className="img relative group z-50">
+            <a target="_blank" href={card.website}><img 
+                src={card.url} 
+                className="w-full group-hover:opacity-50 duration-700 transition-all" 
+            />
+            <div className="absolute top-[10em] left-[9.5em] opacity-0 transition-opacity duration-1000 group-hover:opacity-100">
+                <SquareArrowOutUpRight size={50} strokeWidth={2} />
+            </div></a>
+        </div> 
         <div className="content flex flex-col gap-4">
             <p className="font-semibold text-2xl">{card.title}</p>
             <div className="flex justify-between">
